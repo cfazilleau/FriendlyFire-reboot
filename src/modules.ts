@@ -1,7 +1,7 @@
 import { readdirSync, statSync } from "fs";
 import { ApplicationCommandData, Client } from 'discord.js';
 import * as path from "path";
-import * as npm from "npm"
+//import * as npm from "npm"
 
 const MODULES_PATH = "./modules/"
 
@@ -41,14 +41,18 @@ function addCommand(commandName: string, commandObject: ApplicationCommandData):
 	}
 }
 
-function addEvent(eventName, eventObject) {
+
+function addEvent(eventName: string, eventObject: object) {
 	try {
+		/*
 		if (!events.hasOwnProperty(eventName)) events[eventName] = {};
 		events[eventName][eventObject.pluginName] = eventObject.process;
+		*/
 	} catch (err) {
 		console.log(err);
 	}
 }
+
 
 // preload Modules
 export function preloadModules() {
@@ -62,6 +66,8 @@ export function preloadModules() {
 		}
 	});
 
+	/*
+
 	// load dependencies if they are present
 	if (deps.length > 0) {
 		npm.load({ loaded: false }, (err) => {
@@ -74,6 +80,8 @@ export function preloadModules() {
 			if (err) { console.log('preloadModules: ' + err); }
 		});
 	}
+
+	*/
 }
 
 // load Modules
@@ -120,28 +128,4 @@ export function loadModules(bot: Client): void {
 			events[key].forEach(event => event(params));
 		});
 	}
-
-    // Delete all commands
-    client.application.commands.fetch().then(value => {
-        value.forEach(element => {
-            client.application.commands.delete(element);
-        });
-        console.log(client.application.commands.cache);
-    });
-    
-    client.guilds.cache.first().commands.fetch().then(value => {
-        value.forEach(element => {
-            client.guilds.cache.first().commands.delete(element);
-        });
-        console.log(client.guilds.cache.first().commands.cache);
-    });
-    
-    
-    // Creating a global command
-    commandData;
-    //client.application.commands.create(commandData);
-    //console.log('created command ' + commandData);
-
-    // Creating a guild-specific command
-    //client.guilds.cache.first().commands.create(commandData);
 }

@@ -3,5 +3,4 @@ node_modules
 .env
 
 # Typescript
-dist
-*.tsbuildinfo
+build/

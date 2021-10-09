@@ -1,20 +1,25 @@
 {
-  "name": "friendlyfire-2",
+  "name": "friendlyfire",
   "version": "1.0.0",
   "description": "A Typescript modular discord bot",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "rm -rf dist && tsc && node dist/app.js"
+    "clean": "rm -rf build",
+    "build": "npm run clean && tsc",
+    "start": "npm run build && node build/app.js"
   },
   "author": "faz.cle",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cfazilleau/friendlyfire.git"
+  },
   "devDependencies": {
-    "@types/node": "^15.3.0",
-    "dotenv": "^9.0.2",
-    "tslint": "^6.1.3",
-    "typescript": "^4.2.4"
+    "@types/node": "^16.10.3",
+    "typescript": "^4.4.3"
   },
   "dependencies": {
-    "discord.js": "github:discordjs/discord.js#master"
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0"
   }
 }

@@ -9,10 +9,10 @@ const PERMS_PATH = CONFIG_DIRPATH + 'permissions.json'
 export class Permissions {
     roles : { [name: string]: { [name: string]: boolean } } = { 'everyone': { 'help': true } };
     users : { [name: string]: { [name: string]: boolean } } = {};
-    
+
     hasPermission(user: User, guild: Guild, permission: string) : boolean {
         var allowed : boolean = false;
-        
+
         // for each role
         guild.roles.cache.forEach(role => {
             // if the user has this role
@@ -26,7 +26,7 @@ export class Permissions {
                 }
             }
         });
-        
+
         // if the user is in the users list
         if (this.users.hasOwnProperty(user.id) &&
         // and this permission has an override
@@ -34,7 +34,7 @@ export class Permissions {
             // override 'allowed'
             allowed = this.users[user.id][permission] === true;
         }
-        
+
         return allowed;
     };
 
@@ -65,7 +65,7 @@ export function exportPerms() : void {
 }
 
 // Gets the Permissions for a given Guild
-export function getGuildPermissions(guild : Guild) : Permissions {
+export function getGuildPermissions(guild : Guild) : Permissions | null {
     if (permissions.guilds.hasOwnProperty(guild.id))
         return permissions.guilds[guild.id];
 
@@ -78,7 +78,7 @@ export function addGuild(guild : Guild, doExport : boolean = true) : void {
     if (!permissions.guilds.hasOwnProperty(guild.id))
     {
         permissions.guilds[guild.id] = new Permissions();
-        
+
         if (doExport)
             exportPerms();
     }
