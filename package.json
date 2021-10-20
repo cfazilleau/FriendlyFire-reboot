@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "clean": "rm -rf build",
-    "build": "npm run clean && tsc",
-    "start": "npm run build && node build/app.js"
+    "build": "rm -rf build && tsc",
+    "start": "rm -rf build && tsc && node build/app.js"
   },
   "author": "faz.cle",
   "license": "ISC",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "discord.js": "^13.2.0",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "npm": "^8.0.0"
   }
 }

@@ -33,7 +33,7 @@ function HandleInteraction(interaction: Discord.Interaction) {
 // Create client
 const client: Discord.Client = new Discord.Client(options);
 
-if (client.application == null)
+if (client.application === null)
     throw Error;
 
 const application: Discord.ClientApplication = client.application;

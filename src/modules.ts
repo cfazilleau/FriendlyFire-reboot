@@ -1,7 +1,6 @@
 import { readdirSync, statSync } from "fs";
 import { ApplicationCommandData, Client } from 'discord.js';
 import * as path from "path";
-//import * as npm from "npm"
 
 const MODULES_PATH = "./modules/"
 
