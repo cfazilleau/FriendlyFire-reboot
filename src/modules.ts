@@ -1,12 +1,12 @@
 import { readdirSync, statSync } from "fs";
 import { ApplicationCommandData, Client } from 'discord.js';
-import * as path from "path";
+import { join } from "path";
 
 const MODULES_PATH = "./modules/"
 
 function getDirectories(srcpath: string): string[] {
 	return readdirSync(srcpath).filter(function (file) {
-		return statSync(path.join(srcpath, file)).isDirectory();
+		return statSync(join(srcpath, file)).isDirectory();
 	});
 }
 
